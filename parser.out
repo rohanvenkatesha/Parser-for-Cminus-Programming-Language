@@ -1,0 +1,2504 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Program
+Rule 1     Program -> DeclList Procedures
+Rule 2     Program -> Procedures
+Rule 3     Procedures -> ProcedureDecl Procedures
+Rule 4     Procedures -> ProcedureDecl
+Rule 5     ProcedureDecl -> ProcedureHead ProcedureBody
+Rule 6     ProcedureHead -> FunctionDecl DeclList
+Rule 7     ProcedureHead -> FunctionDecl
+Rule 8     FunctionDecl -> Type IDENTIFIER LP RP LBR
+Rule 9     ProcedureBody -> StatementList RBR
+Rule 10    DeclList -> Type IdentifierList SC
+Rule 11    DeclList -> DeclList Type IdentifierList SC
+Rule 12    IdentifierList -> VarDecl
+Rule 13    IdentifierList -> IdentifierList CM VarDecl
+Rule 14    VarDecl -> IDENTIFIER
+Rule 15    VarDecl -> IDENTIFIER LBK INTCON RBK
+Rule 16    Type -> INT
+Rule 17    Type -> FLOAT
+Rule 18    StatementList -> Statement
+Rule 19    StatementList -> StatementList Statement
+Rule 20    Statement -> Assignment
+Rule 21    Statement -> IfStatement
+Rule 22    Statement -> WhileStatement
+Rule 23    Statement -> IOStatement
+Rule 24    Statement -> ReturnStatement
+Rule 25    Statement -> ExitStatement
+Rule 26    Statement -> CompoundStatement
+Rule 27    Assignment -> Variable ASSIGN Expr SC
+Rule 28    IfStatement -> IF Test CompoundStatement
+Rule 29    IfStatement -> IF Test CompoundStatement ELSE CompoundStatement
+Rule 30    Test -> LP Expr RP
+Rule 31    WhileStatement -> WHILE WhileExpr Statement
+Rule 32    WhileExpr -> LP Expr RP
+Rule 33    IOStatement -> READ LP Variable RP SC
+Rule 34    IOStatement -> WRITE LP Expr RP SC
+Rule 35    IOStatement -> WRITE LP StringConstant RP SC
+Rule 36    ReturnStatement -> RETURN Expr SC
+Rule 37    ExitStatement -> EXIT SC
+Rule 38    CompoundStatement -> LBR StatementList RBR
+Rule 39    Expr -> Expr AND SimpleExpr
+Rule 40    Expr -> Expr OR SimpleExpr
+Rule 41    Expr -> SimpleExpr
+Rule 42    Expr -> NOT SimpleExpr
+Rule 43    SimpleExpr -> SimpleExpr EQ AddExpr
+Rule 44    SimpleExpr -> SimpleExpr NE AddExpr
+Rule 45    SimpleExpr -> SimpleExpr LE AddExpr
+Rule 46    SimpleExpr -> SimpleExpr LT AddExpr
+Rule 47    SimpleExpr -> SimpleExpr GE AddExpr
+Rule 48    SimpleExpr -> SimpleExpr GT AddExpr
+Rule 49    SimpleExpr -> AddExpr
+Rule 50    AddExpr -> AddExpr PLUS MulExpr
+Rule 51    AddExpr -> AddExpr MINUS MulExpr
+Rule 52    AddExpr -> MulExpr
+Rule 53    MulExpr -> MulExpr TIMES Factor
+Rule 54    MulExpr -> MulExpr DIVIDE Factor
+Rule 55    MulExpr -> Factor
+Rule 56    Factor -> Variable
+Rule 57    Factor -> Constant
+Rule 58    Factor -> IDENTIFIER LP RP
+Rule 59    Factor -> LP Expr RP
+Rule 60    Variable -> IDENTIFIER
+Rule 61    Variable -> IDENTIFIER LBK Expr RBK
+Rule 62    StringConstant -> STRING
+Rule 63    Constant -> INTCON
+Rule 64    Constant -> FLOATCON
+
+Terminals, with rules where they appear
+
+AND                  : 39
+ASSIGN               : 27
+CM                   : 13
+DIVIDE               : 54
+ELSE                 : 29
+EQ                   : 43
+EXIT                 : 37
+FLOAT                : 17
+FLOATCON             : 64
+GE                   : 47
+GT                   : 48
+IDENTIFIER           : 8 14 15 58 60 61
+IF                   : 28 29
+INT                  : 16
+INTCON               : 15 63
+LBK                  : 15 61
+LBR                  : 8 38
+LE                   : 45
+LP                   : 8 30 32 33 34 35 58 59
+LT                   : 46
+MINUS                : 51
+NE                   : 44
+NOT                  : 42
+OR                   : 40
+PLUS                 : 50
+RBK                  : 15 61
+RBR                  : 9 38
+READ                 : 33
+RETURN               : 36
+RP                   : 8 30 32 33 34 35 58 59
+SC                   : 10 11 27 33 34 35 36 37
+STRING               : 62
+TIMES                : 53
+WHILE                : 31
+WRITE                : 34 35
+error                : 
+
+Nonterminals, with rules where they appear
+
+AddExpr              : 43 44 45 46 47 48 49 50 51
+Assignment           : 20
+CompoundStatement    : 26 28 29 29
+Constant             : 57
+DeclList             : 1 6 11
+ExitStatement        : 25
+Expr                 : 27 30 32 34 36 39 40 59 61
+Factor               : 53 54 55
+FunctionDecl         : 6 7
+IOStatement          : 23
+IdentifierList       : 10 11 13
+IfStatement          : 21
+MulExpr              : 50 51 52 53 54
+ProcedureBody        : 5
+ProcedureDecl        : 3 4
+ProcedureHead        : 5
+Procedures           : 1 2 3
+Program              : 0
+ReturnStatement      : 24
+SimpleExpr           : 39 40 41 42 43 44 45 46 47 48
+Statement            : 18 19 31
+StatementList        : 9 19 38
+StringConstant       : 35
+Test                 : 28 29
+Type                 : 8 10 11
+VarDecl              : 12 13
+Variable             : 27 33 56
+WhileExpr            : 31
+WhileStatement       : 22
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Program
+    (1) Program -> . DeclList Procedures
+    (2) Program -> . Procedures
+    (10) DeclList -> . Type IdentifierList SC
+    (11) DeclList -> . DeclList Type IdentifierList SC
+    (3) Procedures -> . ProcedureDecl Procedures
+    (4) Procedures -> . ProcedureDecl
+    (16) Type -> . INT
+    (17) Type -> . FLOAT
+    (5) ProcedureDecl -> . ProcedureHead ProcedureBody
+    (6) ProcedureHead -> . FunctionDecl DeclList
+    (7) ProcedureHead -> . FunctionDecl
+    (8) FunctionDecl -> . Type IDENTIFIER LP RP LBR
+
+    INT             shift and go to state 6
+    FLOAT           shift and go to state 7
+
+    Program                        shift and go to state 1
+    DeclList                       shift and go to state 2
+    Procedures                     shift and go to state 3
+    Type                           shift and go to state 4
+    ProcedureDecl                  shift and go to state 5
+    ProcedureHead                  shift and go to state 8
+    FunctionDecl                   shift and go to state 9
+
+state 1
+
+    (0) S' -> Program .
+
+
+
+state 2
+
+    (1) Program -> DeclList . Procedures
+    (11) DeclList -> DeclList . Type IdentifierList SC
+    (3) Procedures -> . ProcedureDecl Procedures
+    (4) Procedures -> . ProcedureDecl
+    (16) Type -> . INT
+    (17) Type -> . FLOAT
+    (5) ProcedureDecl -> . ProcedureHead ProcedureBody
+    (6) ProcedureHead -> . FunctionDecl DeclList
+    (7) ProcedureHead -> . FunctionDecl
+    (8) FunctionDecl -> . Type IDENTIFIER LP RP LBR
+
+    INT             shift and go to state 6
+    FLOAT           shift and go to state 7
+
+    Procedures                     shift and go to state 10
+    Type                           shift and go to state 11
+    ProcedureDecl                  shift and go to state 5
+    ProcedureHead                  shift and go to state 8
+    FunctionDecl                   shift and go to state 9
+
+state 3
+
+    (2) Program -> Procedures .
+
+    $end            reduce using rule 2 (Program -> Procedures .)
+
+
+state 4
+
+    (10) DeclList -> Type . IdentifierList SC
+    (8) FunctionDecl -> Type . IDENTIFIER LP RP LBR
+    (12) IdentifierList -> . VarDecl
+    (13) IdentifierList -> . IdentifierList CM VarDecl
+    (14) VarDecl -> . IDENTIFIER
+    (15) VarDecl -> . IDENTIFIER LBK INTCON RBK
+
+    IDENTIFIER      shift and go to state 13
+
+    IdentifierList                 shift and go to state 12
+    VarDecl                        shift and go to state 14
+
+state 5
+
+    (3) Procedures -> ProcedureDecl . Procedures
+    (4) Procedures -> ProcedureDecl .
+    (3) Procedures -> . ProcedureDecl Procedures
+    (4) Procedures -> . ProcedureDecl
+    (5) ProcedureDecl -> . ProcedureHead ProcedureBody
+    (6) ProcedureHead -> . FunctionDecl DeclList
+    (7) ProcedureHead -> . FunctionDecl
+    (8) FunctionDecl -> . Type IDENTIFIER LP RP LBR
+    (16) Type -> . INT
+    (17) Type -> . FLOAT
+
+    $end            reduce using rule 4 (Procedures -> ProcedureDecl .)
+    INT             shift and go to state 6
+    FLOAT           shift and go to state 7
+
+    ProcedureDecl                  shift and go to state 5
+    Procedures                     shift and go to state 15
+    ProcedureHead                  shift and go to state 8
+    FunctionDecl                   shift and go to state 9
+    Type                           shift and go to state 16
+
+state 6
+
+    (16) Type -> INT .
+
+    IDENTIFIER      reduce using rule 16 (Type -> INT .)
+
+
+state 7
+
+    (17) Type -> FLOAT .
+
+    IDENTIFIER      reduce using rule 17 (Type -> FLOAT .)
+
+
+state 8
+
+    (5) ProcedureDecl -> ProcedureHead . ProcedureBody
+    (9) ProcedureBody -> . StatementList RBR
+    (18) StatementList -> . Statement
+    (19) StatementList -> . StatementList Statement
+    (20) Statement -> . Assignment
+    (21) Statement -> . IfStatement
+    (22) Statement -> . WhileStatement
+    (23) Statement -> . IOStatement
+    (24) Statement -> . ReturnStatement
+    (25) Statement -> . ExitStatement
+    (26) Statement -> . CompoundStatement
+    (27) Assignment -> . Variable ASSIGN Expr SC
+    (28) IfStatement -> . IF Test CompoundStatement
+    (29) IfStatement -> . IF Test CompoundStatement ELSE CompoundStatement
+    (31) WhileStatement -> . WHILE WhileExpr Statement
+    (33) IOStatement -> . READ LP Variable RP SC
+    (34) IOStatement -> . WRITE LP Expr RP SC
+    (35) IOStatement -> . WRITE LP StringConstant RP SC
+    (36) ReturnStatement -> . RETURN Expr SC
+    (37) ExitStatement -> . EXIT SC
+    (38) CompoundStatement -> . LBR StatementList RBR
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    READ            shift and go to state 30
+    WRITE           shift and go to state 31
+    RETURN          shift and go to state 32
+    EXIT            shift and go to state 33
+    LBR             shift and go to state 34
+    IDENTIFIER      shift and go to state 35
+
+    ProcedureBody                  shift and go to state 17
+    StatementList                  shift and go to state 18
+    Statement                      shift and go to state 19
+    Assignment                     shift and go to state 20
+    IfStatement                    shift and go to state 21
+    WhileStatement                 shift and go to state 22
+    IOStatement                    shift and go to state 23
+    ReturnStatement                shift and go to state 24
+    ExitStatement                  shift and go to state 25
+    CompoundStatement              shift and go to state 26
+    Variable                       shift and go to state 27
+
+state 9
+
+    (6) ProcedureHead -> FunctionDecl . DeclList
+    (7) ProcedureHead -> FunctionDecl .
+    (10) DeclList -> . Type IdentifierList SC
+    (11) DeclList -> . DeclList Type IdentifierList SC
+    (16) Type -> . INT
+    (17) Type -> . FLOAT
+
+    IF              reduce using rule 7 (ProcedureHead -> FunctionDecl .)
+    WHILE           reduce using rule 7 (ProcedureHead -> FunctionDecl .)
+    READ            reduce using rule 7 (ProcedureHead -> FunctionDecl .)
+    WRITE           reduce using rule 7 (ProcedureHead -> FunctionDecl .)
+    RETURN          reduce using rule 7 (ProcedureHead -> FunctionDecl .)
+    EXIT            reduce using rule 7 (ProcedureHead -> FunctionDecl .)
+    LBR             reduce using rule 7 (ProcedureHead -> FunctionDecl .)
+    IDENTIFIER      reduce using rule 7 (ProcedureHead -> FunctionDecl .)
+    INT             shift and go to state 6
+    FLOAT           shift and go to state 7
+
+    DeclList                       shift and go to state 36
+    Type                           shift and go to state 37
+
+state 10
+
+    (1) Program -> DeclList Procedures .
+
+    $end            reduce using rule 1 (Program -> DeclList Procedures .)
+
+
+state 11
+
+    (11) DeclList -> DeclList Type . IdentifierList SC
+    (8) FunctionDecl -> Type . IDENTIFIER LP RP LBR
+    (12) IdentifierList -> . VarDecl
+    (13) IdentifierList -> . IdentifierList CM VarDecl
+    (14) VarDecl -> . IDENTIFIER
+    (15) VarDecl -> . IDENTIFIER LBK INTCON RBK
+
+    IDENTIFIER      shift and go to state 13
+
+    IdentifierList                 shift and go to state 38
+    VarDecl                        shift and go to state 14
+
+state 12
+
+    (10) DeclList -> Type IdentifierList . SC
+    (13) IdentifierList -> IdentifierList . CM VarDecl
+
+    SC              shift and go to state 39
+    CM              shift and go to state 40
+
+
+state 13
+
+    (8) FunctionDecl -> Type IDENTIFIER . LP RP LBR
+    (14) VarDecl -> IDENTIFIER .
+    (15) VarDecl -> IDENTIFIER . LBK INTCON RBK
+
+    LP              shift and go to state 41
+    SC              reduce using rule 14 (VarDecl -> IDENTIFIER .)
+    CM              reduce using rule 14 (VarDecl -> IDENTIFIER .)
+    LBK             shift and go to state 42
+
+
+state 14
+
+    (12) IdentifierList -> VarDecl .
+
+    SC              reduce using rule 12 (IdentifierList -> VarDecl .)
+    CM              reduce using rule 12 (IdentifierList -> VarDecl .)
+
+
+state 15
+
+    (3) Procedures -> ProcedureDecl Procedures .
+
+    $end            reduce using rule 3 (Procedures -> ProcedureDecl Procedures .)
+
+
+state 16
+
+    (8) FunctionDecl -> Type . IDENTIFIER LP RP LBR
+
+    IDENTIFIER      shift and go to state 43
+
+
+state 17
+
+    (5) ProcedureDecl -> ProcedureHead ProcedureBody .
+
+    INT             reduce using rule 5 (ProcedureDecl -> ProcedureHead ProcedureBody .)
+    FLOAT           reduce using rule 5 (ProcedureDecl -> ProcedureHead ProcedureBody .)
+    $end            reduce using rule 5 (ProcedureDecl -> ProcedureHead ProcedureBody .)
+
+
+state 18
+
+    (9) ProcedureBody -> StatementList . RBR
+    (19) StatementList -> StatementList . Statement
+    (20) Statement -> . Assignment
+    (21) Statement -> . IfStatement
+    (22) Statement -> . WhileStatement
+    (23) Statement -> . IOStatement
+    (24) Statement -> . ReturnStatement
+    (25) Statement -> . ExitStatement
+    (26) Statement -> . CompoundStatement
+    (27) Assignment -> . Variable ASSIGN Expr SC
+    (28) IfStatement -> . IF Test CompoundStatement
+    (29) IfStatement -> . IF Test CompoundStatement ELSE CompoundStatement
+    (31) WhileStatement -> . WHILE WhileExpr Statement
+    (33) IOStatement -> . READ LP Variable RP SC
+    (34) IOStatement -> . WRITE LP Expr RP SC
+    (35) IOStatement -> . WRITE LP StringConstant RP SC
+    (36) ReturnStatement -> . RETURN Expr SC
+    (37) ExitStatement -> . EXIT SC
+    (38) CompoundStatement -> . LBR StatementList RBR
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+
+    RBR             shift and go to state 44
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    READ            shift and go to state 30
+    WRITE           shift and go to state 31
+    RETURN          shift and go to state 32
+    EXIT            shift and go to state 33
+    LBR             shift and go to state 34
+    IDENTIFIER      shift and go to state 35
+
+    Statement                      shift and go to state 45
+    Assignment                     shift and go to state 20
+    IfStatement                    shift and go to state 21
+    WhileStatement                 shift and go to state 22
+    IOStatement                    shift and go to state 23
+    ReturnStatement                shift and go to state 24
+    ExitStatement                  shift and go to state 25
+    CompoundStatement              shift and go to state 26
+    Variable                       shift and go to state 27
+
+state 19
+
+    (18) StatementList -> Statement .
+
+    RBR             reduce using rule 18 (StatementList -> Statement .)
+    IF              reduce using rule 18 (StatementList -> Statement .)
+    WHILE           reduce using rule 18 (StatementList -> Statement .)
+    READ            reduce using rule 18 (StatementList -> Statement .)
+    WRITE           reduce using rule 18 (StatementList -> Statement .)
+    RETURN          reduce using rule 18 (StatementList -> Statement .)
+    EXIT            reduce using rule 18 (StatementList -> Statement .)
+    LBR             reduce using rule 18 (StatementList -> Statement .)
+    IDENTIFIER      reduce using rule 18 (StatementList -> Statement .)
+
+
+state 20
+
+    (20) Statement -> Assignment .
+
+    RBR             reduce using rule 20 (Statement -> Assignment .)
+    IF              reduce using rule 20 (Statement -> Assignment .)
+    WHILE           reduce using rule 20 (Statement -> Assignment .)
+    READ            reduce using rule 20 (Statement -> Assignment .)
+    WRITE           reduce using rule 20 (Statement -> Assignment .)
+    RETURN          reduce using rule 20 (Statement -> Assignment .)
+    EXIT            reduce using rule 20 (Statement -> Assignment .)
+    LBR             reduce using rule 20 (Statement -> Assignment .)
+    IDENTIFIER      reduce using rule 20 (Statement -> Assignment .)
+
+
+state 21
+
+    (21) Statement -> IfStatement .
+
+    RBR             reduce using rule 21 (Statement -> IfStatement .)
+    IF              reduce using rule 21 (Statement -> IfStatement .)
+    WHILE           reduce using rule 21 (Statement -> IfStatement .)
+    READ            reduce using rule 21 (Statement -> IfStatement .)
+    WRITE           reduce using rule 21 (Statement -> IfStatement .)
+    RETURN          reduce using rule 21 (Statement -> IfStatement .)
+    EXIT            reduce using rule 21 (Statement -> IfStatement .)
+    LBR             reduce using rule 21 (Statement -> IfStatement .)
+    IDENTIFIER      reduce using rule 21 (Statement -> IfStatement .)
+
+
+state 22
+
+    (22) Statement -> WhileStatement .
+
+    RBR             reduce using rule 22 (Statement -> WhileStatement .)
+    IF              reduce using rule 22 (Statement -> WhileStatement .)
+    WHILE           reduce using rule 22 (Statement -> WhileStatement .)
+    READ            reduce using rule 22 (Statement -> WhileStatement .)
+    WRITE           reduce using rule 22 (Statement -> WhileStatement .)
+    RETURN          reduce using rule 22 (Statement -> WhileStatement .)
+    EXIT            reduce using rule 22 (Statement -> WhileStatement .)
+    LBR             reduce using rule 22 (Statement -> WhileStatement .)
+    IDENTIFIER      reduce using rule 22 (Statement -> WhileStatement .)
+
+
+state 23
+
+    (23) Statement -> IOStatement .
+
+    RBR             reduce using rule 23 (Statement -> IOStatement .)
+    IF              reduce using rule 23 (Statement -> IOStatement .)
+    WHILE           reduce using rule 23 (Statement -> IOStatement .)
+    READ            reduce using rule 23 (Statement -> IOStatement .)
+    WRITE           reduce using rule 23 (Statement -> IOStatement .)
+    RETURN          reduce using rule 23 (Statement -> IOStatement .)
+    EXIT            reduce using rule 23 (Statement -> IOStatement .)
+    LBR             reduce using rule 23 (Statement -> IOStatement .)
+    IDENTIFIER      reduce using rule 23 (Statement -> IOStatement .)
+
+
+state 24
+
+    (24) Statement -> ReturnStatement .
+
+    RBR             reduce using rule 24 (Statement -> ReturnStatement .)
+    IF              reduce using rule 24 (Statement -> ReturnStatement .)
+    WHILE           reduce using rule 24 (Statement -> ReturnStatement .)
+    READ            reduce using rule 24 (Statement -> ReturnStatement .)
+    WRITE           reduce using rule 24 (Statement -> ReturnStatement .)
+    RETURN          reduce using rule 24 (Statement -> ReturnStatement .)
+    EXIT            reduce using rule 24 (Statement -> ReturnStatement .)
+    LBR             reduce using rule 24 (Statement -> ReturnStatement .)
+    IDENTIFIER      reduce using rule 24 (Statement -> ReturnStatement .)
+
+
+state 25
+
+    (25) Statement -> ExitStatement .
+
+    RBR             reduce using rule 25 (Statement -> ExitStatement .)
+    IF              reduce using rule 25 (Statement -> ExitStatement .)
+    WHILE           reduce using rule 25 (Statement -> ExitStatement .)
+    READ            reduce using rule 25 (Statement -> ExitStatement .)
+    WRITE           reduce using rule 25 (Statement -> ExitStatement .)
+    RETURN          reduce using rule 25 (Statement -> ExitStatement .)
+    EXIT            reduce using rule 25 (Statement -> ExitStatement .)
+    LBR             reduce using rule 25 (Statement -> ExitStatement .)
+    IDENTIFIER      reduce using rule 25 (Statement -> ExitStatement .)
+
+
+state 26
+
+    (26) Statement -> CompoundStatement .
+
+    RBR             reduce using rule 26 (Statement -> CompoundStatement .)
+    IF              reduce using rule 26 (Statement -> CompoundStatement .)
+    WHILE           reduce using rule 26 (Statement -> CompoundStatement .)
+    READ            reduce using rule 26 (Statement -> CompoundStatement .)
+    WRITE           reduce using rule 26 (Statement -> CompoundStatement .)
+    RETURN          reduce using rule 26 (Statement -> CompoundStatement .)
+    EXIT            reduce using rule 26 (Statement -> CompoundStatement .)
+    LBR             reduce using rule 26 (Statement -> CompoundStatement .)
+    IDENTIFIER      reduce using rule 26 (Statement -> CompoundStatement .)
+
+
+state 27
+
+    (27) Assignment -> Variable . ASSIGN Expr SC
+
+    ASSIGN          shift and go to state 46
+
+
+state 28
+
+    (28) IfStatement -> IF . Test CompoundStatement
+    (29) IfStatement -> IF . Test CompoundStatement ELSE CompoundStatement
+    (30) Test -> . LP Expr RP
+
+    LP              shift and go to state 48
+
+    Test                           shift and go to state 47
+
+state 29
+
+    (31) WhileStatement -> WHILE . WhileExpr Statement
+    (32) WhileExpr -> . LP Expr RP
+
+    LP              shift and go to state 50
+
+    WhileExpr                      shift and go to state 49
+
+state 30
+
+    (33) IOStatement -> READ . LP Variable RP SC
+
+    LP              shift and go to state 51
+
+
+state 31
+
+    (34) IOStatement -> WRITE . LP Expr RP SC
+    (35) IOStatement -> WRITE . LP StringConstant RP SC
+
+    LP              shift and go to state 52
+
+
+state 32
+
+    (36) ReturnStatement -> RETURN . Expr SC
+    (39) Expr -> . Expr AND SimpleExpr
+    (40) Expr -> . Expr OR SimpleExpr
+    (41) Expr -> . SimpleExpr
+    (42) Expr -> . NOT SimpleExpr
+    (43) SimpleExpr -> . SimpleExpr EQ AddExpr
+    (44) SimpleExpr -> . SimpleExpr NE AddExpr
+    (45) SimpleExpr -> . SimpleExpr LE AddExpr
+    (46) SimpleExpr -> . SimpleExpr LT AddExpr
+    (47) SimpleExpr -> . SimpleExpr GE AddExpr
+    (48) SimpleExpr -> . SimpleExpr GT AddExpr
+    (49) SimpleExpr -> . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    NOT             shift and go to state 55
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    Expr                           shift and go to state 53
+    SimpleExpr                     shift and go to state 54
+    AddExpr                        shift and go to state 56
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 33
+
+    (37) ExitStatement -> EXIT . SC
+
+    SC              shift and go to state 65
+
+
+state 34
+
+    (38) CompoundStatement -> LBR . StatementList RBR
+    (18) StatementList -> . Statement
+    (19) StatementList -> . StatementList Statement
+    (20) Statement -> . Assignment
+    (21) Statement -> . IfStatement
+    (22) Statement -> . WhileStatement
+    (23) Statement -> . IOStatement
+    (24) Statement -> . ReturnStatement
+    (25) Statement -> . ExitStatement
+    (26) Statement -> . CompoundStatement
+    (27) Assignment -> . Variable ASSIGN Expr SC
+    (28) IfStatement -> . IF Test CompoundStatement
+    (29) IfStatement -> . IF Test CompoundStatement ELSE CompoundStatement
+    (31) WhileStatement -> . WHILE WhileExpr Statement
+    (33) IOStatement -> . READ LP Variable RP SC
+    (34) IOStatement -> . WRITE LP Expr RP SC
+    (35) IOStatement -> . WRITE LP StringConstant RP SC
+    (36) ReturnStatement -> . RETURN Expr SC
+    (37) ExitStatement -> . EXIT SC
+    (38) CompoundStatement -> . LBR StatementList RBR
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    READ            shift and go to state 30
+    WRITE           shift and go to state 31
+    RETURN          shift and go to state 32
+    EXIT            shift and go to state 33
+    LBR             shift and go to state 34
+    IDENTIFIER      shift and go to state 35
+
+    StatementList                  shift and go to state 66
+    Statement                      shift and go to state 19
+    Assignment                     shift and go to state 20
+    IfStatement                    shift and go to state 21
+    WhileStatement                 shift and go to state 22
+    IOStatement                    shift and go to state 23
+    ReturnStatement                shift and go to state 24
+    ExitStatement                  shift and go to state 25
+    CompoundStatement              shift and go to state 26
+    Variable                       shift and go to state 27
+
+state 35
+
+    (60) Variable -> IDENTIFIER .
+    (61) Variable -> IDENTIFIER . LBK Expr RBK
+
+    ASSIGN          reduce using rule 60 (Variable -> IDENTIFIER .)
+    RP              reduce using rule 60 (Variable -> IDENTIFIER .)
+    LBK             shift and go to state 67
+
+
+state 36
+
+    (6) ProcedureHead -> FunctionDecl DeclList .
+    (11) DeclList -> DeclList . Type IdentifierList SC
+    (16) Type -> . INT
+    (17) Type -> . FLOAT
+
+    IF              reduce using rule 6 (ProcedureHead -> FunctionDecl DeclList .)
+    WHILE           reduce using rule 6 (ProcedureHead -> FunctionDecl DeclList .)
+    READ            reduce using rule 6 (ProcedureHead -> FunctionDecl DeclList .)
+    WRITE           reduce using rule 6 (ProcedureHead -> FunctionDecl DeclList .)
+    RETURN          reduce using rule 6 (ProcedureHead -> FunctionDecl DeclList .)
+    EXIT            reduce using rule 6 (ProcedureHead -> FunctionDecl DeclList .)
+    LBR             reduce using rule 6 (ProcedureHead -> FunctionDecl DeclList .)
+    IDENTIFIER      reduce using rule 6 (ProcedureHead -> FunctionDecl DeclList .)
+    INT             shift and go to state 6
+    FLOAT           shift and go to state 7
+
+    Type                           shift and go to state 68
+
+state 37
+
+    (10) DeclList -> Type . IdentifierList SC
+    (12) IdentifierList -> . VarDecl
+    (13) IdentifierList -> . IdentifierList CM VarDecl
+    (14) VarDecl -> . IDENTIFIER
+    (15) VarDecl -> . IDENTIFIER LBK INTCON RBK
+
+    IDENTIFIER      shift and go to state 69
+
+    IdentifierList                 shift and go to state 12
+    VarDecl                        shift and go to state 14
+
+state 38
+
+    (11) DeclList -> DeclList Type IdentifierList . SC
+    (13) IdentifierList -> IdentifierList . CM VarDecl
+
+    SC              shift and go to state 70
+    CM              shift and go to state 40
+
+
+state 39
+
+    (10) DeclList -> Type IdentifierList SC .
+
+    INT             reduce using rule 10 (DeclList -> Type IdentifierList SC .)
+    FLOAT           reduce using rule 10 (DeclList -> Type IdentifierList SC .)
+    IF              reduce using rule 10 (DeclList -> Type IdentifierList SC .)
+    WHILE           reduce using rule 10 (DeclList -> Type IdentifierList SC .)
+    READ            reduce using rule 10 (DeclList -> Type IdentifierList SC .)
+    WRITE           reduce using rule 10 (DeclList -> Type IdentifierList SC .)
+    RETURN          reduce using rule 10 (DeclList -> Type IdentifierList SC .)
+    EXIT            reduce using rule 10 (DeclList -> Type IdentifierList SC .)
+    LBR             reduce using rule 10 (DeclList -> Type IdentifierList SC .)
+    IDENTIFIER      reduce using rule 10 (DeclList -> Type IdentifierList SC .)
+
+
+state 40
+
+    (13) IdentifierList -> IdentifierList CM . VarDecl
+    (14) VarDecl -> . IDENTIFIER
+    (15) VarDecl -> . IDENTIFIER LBK INTCON RBK
+
+    IDENTIFIER      shift and go to state 69
+
+    VarDecl                        shift and go to state 71
+
+state 41
+
+    (8) FunctionDecl -> Type IDENTIFIER LP . RP LBR
+
+    RP              shift and go to state 72
+
+
+state 42
+
+    (15) VarDecl -> IDENTIFIER LBK . INTCON RBK
+
+    INTCON          shift and go to state 73
+
+
+state 43
+
+    (8) FunctionDecl -> Type IDENTIFIER . LP RP LBR
+
+    LP              shift and go to state 41
+
+
+state 44
+
+    (9) ProcedureBody -> StatementList RBR .
+
+    INT             reduce using rule 9 (ProcedureBody -> StatementList RBR .)
+    FLOAT           reduce using rule 9 (ProcedureBody -> StatementList RBR .)
+    $end            reduce using rule 9 (ProcedureBody -> StatementList RBR .)
+
+
+state 45
+
+    (19) StatementList -> StatementList Statement .
+
+    RBR             reduce using rule 19 (StatementList -> StatementList Statement .)
+    IF              reduce using rule 19 (StatementList -> StatementList Statement .)
+    WHILE           reduce using rule 19 (StatementList -> StatementList Statement .)
+    READ            reduce using rule 19 (StatementList -> StatementList Statement .)
+    WRITE           reduce using rule 19 (StatementList -> StatementList Statement .)
+    RETURN          reduce using rule 19 (StatementList -> StatementList Statement .)
+    EXIT            reduce using rule 19 (StatementList -> StatementList Statement .)
+    LBR             reduce using rule 19 (StatementList -> StatementList Statement .)
+    IDENTIFIER      reduce using rule 19 (StatementList -> StatementList Statement .)
+
+
+state 46
+
+    (27) Assignment -> Variable ASSIGN . Expr SC
+    (39) Expr -> . Expr AND SimpleExpr
+    (40) Expr -> . Expr OR SimpleExpr
+    (41) Expr -> . SimpleExpr
+    (42) Expr -> . NOT SimpleExpr
+    (43) SimpleExpr -> . SimpleExpr EQ AddExpr
+    (44) SimpleExpr -> . SimpleExpr NE AddExpr
+    (45) SimpleExpr -> . SimpleExpr LE AddExpr
+    (46) SimpleExpr -> . SimpleExpr LT AddExpr
+    (47) SimpleExpr -> . SimpleExpr GE AddExpr
+    (48) SimpleExpr -> . SimpleExpr GT AddExpr
+    (49) SimpleExpr -> . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    NOT             shift and go to state 55
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    Variable                       shift and go to state 59
+    Expr                           shift and go to state 74
+    SimpleExpr                     shift and go to state 54
+    AddExpr                        shift and go to state 56
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Constant                       shift and go to state 60
+
+state 47
+
+    (28) IfStatement -> IF Test . CompoundStatement
+    (29) IfStatement -> IF Test . CompoundStatement ELSE CompoundStatement
+    (38) CompoundStatement -> . LBR StatementList RBR
+
+    LBR             shift and go to state 34
+
+    CompoundStatement              shift and go to state 75
+
+state 48
+
+    (30) Test -> LP . Expr RP
+    (39) Expr -> . Expr AND SimpleExpr
+    (40) Expr -> . Expr OR SimpleExpr
+    (41) Expr -> . SimpleExpr
+    (42) Expr -> . NOT SimpleExpr
+    (43) SimpleExpr -> . SimpleExpr EQ AddExpr
+    (44) SimpleExpr -> . SimpleExpr NE AddExpr
+    (45) SimpleExpr -> . SimpleExpr LE AddExpr
+    (46) SimpleExpr -> . SimpleExpr LT AddExpr
+    (47) SimpleExpr -> . SimpleExpr GE AddExpr
+    (48) SimpleExpr -> . SimpleExpr GT AddExpr
+    (49) SimpleExpr -> . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    NOT             shift and go to state 55
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    Expr                           shift and go to state 76
+    SimpleExpr                     shift and go to state 54
+    AddExpr                        shift and go to state 56
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 49
+
+    (31) WhileStatement -> WHILE WhileExpr . Statement
+    (20) Statement -> . Assignment
+    (21) Statement -> . IfStatement
+    (22) Statement -> . WhileStatement
+    (23) Statement -> . IOStatement
+    (24) Statement -> . ReturnStatement
+    (25) Statement -> . ExitStatement
+    (26) Statement -> . CompoundStatement
+    (27) Assignment -> . Variable ASSIGN Expr SC
+    (28) IfStatement -> . IF Test CompoundStatement
+    (29) IfStatement -> . IF Test CompoundStatement ELSE CompoundStatement
+    (31) WhileStatement -> . WHILE WhileExpr Statement
+    (33) IOStatement -> . READ LP Variable RP SC
+    (34) IOStatement -> . WRITE LP Expr RP SC
+    (35) IOStatement -> . WRITE LP StringConstant RP SC
+    (36) ReturnStatement -> . RETURN Expr SC
+    (37) ExitStatement -> . EXIT SC
+    (38) CompoundStatement -> . LBR StatementList RBR
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    READ            shift and go to state 30
+    WRITE           shift and go to state 31
+    RETURN          shift and go to state 32
+    EXIT            shift and go to state 33
+    LBR             shift and go to state 34
+    IDENTIFIER      shift and go to state 35
+
+    Statement                      shift and go to state 77
+    Assignment                     shift and go to state 20
+    IfStatement                    shift and go to state 21
+    WhileStatement                 shift and go to state 22
+    IOStatement                    shift and go to state 23
+    ReturnStatement                shift and go to state 24
+    ExitStatement                  shift and go to state 25
+    CompoundStatement              shift and go to state 26
+    Variable                       shift and go to state 27
+
+state 50
+
+    (32) WhileExpr -> LP . Expr RP
+    (39) Expr -> . Expr AND SimpleExpr
+    (40) Expr -> . Expr OR SimpleExpr
+    (41) Expr -> . SimpleExpr
+    (42) Expr -> . NOT SimpleExpr
+    (43) SimpleExpr -> . SimpleExpr EQ AddExpr
+    (44) SimpleExpr -> . SimpleExpr NE AddExpr
+    (45) SimpleExpr -> . SimpleExpr LE AddExpr
+    (46) SimpleExpr -> . SimpleExpr LT AddExpr
+    (47) SimpleExpr -> . SimpleExpr GE AddExpr
+    (48) SimpleExpr -> . SimpleExpr GT AddExpr
+    (49) SimpleExpr -> . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    NOT             shift and go to state 55
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    Expr                           shift and go to state 78
+    SimpleExpr                     shift and go to state 54
+    AddExpr                        shift and go to state 56
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 51
+
+    (33) IOStatement -> READ LP . Variable RP SC
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+
+    IDENTIFIER      shift and go to state 35
+
+    Variable                       shift and go to state 79
+
+state 52
+
+    (34) IOStatement -> WRITE LP . Expr RP SC
+    (35) IOStatement -> WRITE LP . StringConstant RP SC
+    (39) Expr -> . Expr AND SimpleExpr
+    (40) Expr -> . Expr OR SimpleExpr
+    (41) Expr -> . SimpleExpr
+    (42) Expr -> . NOT SimpleExpr
+    (62) StringConstant -> . STRING
+    (43) SimpleExpr -> . SimpleExpr EQ AddExpr
+    (44) SimpleExpr -> . SimpleExpr NE AddExpr
+    (45) SimpleExpr -> . SimpleExpr LE AddExpr
+    (46) SimpleExpr -> . SimpleExpr LT AddExpr
+    (47) SimpleExpr -> . SimpleExpr GE AddExpr
+    (48) SimpleExpr -> . SimpleExpr GT AddExpr
+    (49) SimpleExpr -> . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    NOT             shift and go to state 55
+    STRING          shift and go to state 82
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    Expr                           shift and go to state 80
+    StringConstant                 shift and go to state 81
+    SimpleExpr                     shift and go to state 54
+    AddExpr                        shift and go to state 56
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 53
+
+    (36) ReturnStatement -> RETURN Expr . SC
+    (39) Expr -> Expr . AND SimpleExpr
+    (40) Expr -> Expr . OR SimpleExpr
+
+    SC              shift and go to state 83
+    AND             shift and go to state 84
+    OR              shift and go to state 85
+
+
+state 54
+
+    (41) Expr -> SimpleExpr .
+    (43) SimpleExpr -> SimpleExpr . EQ AddExpr
+    (44) SimpleExpr -> SimpleExpr . NE AddExpr
+    (45) SimpleExpr -> SimpleExpr . LE AddExpr
+    (46) SimpleExpr -> SimpleExpr . LT AddExpr
+    (47) SimpleExpr -> SimpleExpr . GE AddExpr
+    (48) SimpleExpr -> SimpleExpr . GT AddExpr
+
+    SC              reduce using rule 41 (Expr -> SimpleExpr .)
+    AND             reduce using rule 41 (Expr -> SimpleExpr .)
+    OR              reduce using rule 41 (Expr -> SimpleExpr .)
+    RP              reduce using rule 41 (Expr -> SimpleExpr .)
+    RBK             reduce using rule 41 (Expr -> SimpleExpr .)
+    EQ              shift and go to state 86
+    NE              shift and go to state 87
+    LE              shift and go to state 88
+    LT              shift and go to state 89
+    GE              shift and go to state 90
+    GT              shift and go to state 91
+
+
+state 55
+
+    (42) Expr -> NOT . SimpleExpr
+    (43) SimpleExpr -> . SimpleExpr EQ AddExpr
+    (44) SimpleExpr -> . SimpleExpr NE AddExpr
+    (45) SimpleExpr -> . SimpleExpr LE AddExpr
+    (46) SimpleExpr -> . SimpleExpr LT AddExpr
+    (47) SimpleExpr -> . SimpleExpr GE AddExpr
+    (48) SimpleExpr -> . SimpleExpr GT AddExpr
+    (49) SimpleExpr -> . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    SimpleExpr                     shift and go to state 92
+    AddExpr                        shift and go to state 56
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 56
+
+    (49) SimpleExpr -> AddExpr .
+    (50) AddExpr -> AddExpr . PLUS MulExpr
+    (51) AddExpr -> AddExpr . MINUS MulExpr
+
+    EQ              reduce using rule 49 (SimpleExpr -> AddExpr .)
+    NE              reduce using rule 49 (SimpleExpr -> AddExpr .)
+    LE              reduce using rule 49 (SimpleExpr -> AddExpr .)
+    LT              reduce using rule 49 (SimpleExpr -> AddExpr .)
+    GE              reduce using rule 49 (SimpleExpr -> AddExpr .)
+    GT              reduce using rule 49 (SimpleExpr -> AddExpr .)
+    SC              reduce using rule 49 (SimpleExpr -> AddExpr .)
+    AND             reduce using rule 49 (SimpleExpr -> AddExpr .)
+    OR              reduce using rule 49 (SimpleExpr -> AddExpr .)
+    RP              reduce using rule 49 (SimpleExpr -> AddExpr .)
+    RBK             reduce using rule 49 (SimpleExpr -> AddExpr .)
+    PLUS            shift and go to state 93
+    MINUS           shift and go to state 94
+
+
+state 57
+
+    (52) AddExpr -> MulExpr .
+    (53) MulExpr -> MulExpr . TIMES Factor
+    (54) MulExpr -> MulExpr . DIVIDE Factor
+
+    PLUS            reduce using rule 52 (AddExpr -> MulExpr .)
+    MINUS           reduce using rule 52 (AddExpr -> MulExpr .)
+    EQ              reduce using rule 52 (AddExpr -> MulExpr .)
+    NE              reduce using rule 52 (AddExpr -> MulExpr .)
+    LE              reduce using rule 52 (AddExpr -> MulExpr .)
+    LT              reduce using rule 52 (AddExpr -> MulExpr .)
+    GE              reduce using rule 52 (AddExpr -> MulExpr .)
+    GT              reduce using rule 52 (AddExpr -> MulExpr .)
+    SC              reduce using rule 52 (AddExpr -> MulExpr .)
+    AND             reduce using rule 52 (AddExpr -> MulExpr .)
+    OR              reduce using rule 52 (AddExpr -> MulExpr .)
+    RP              reduce using rule 52 (AddExpr -> MulExpr .)
+    RBK             reduce using rule 52 (AddExpr -> MulExpr .)
+    TIMES           shift and go to state 95
+    DIVIDE          shift and go to state 96
+
+
+state 58
+
+    (55) MulExpr -> Factor .
+
+    TIMES           reduce using rule 55 (MulExpr -> Factor .)
+    DIVIDE          reduce using rule 55 (MulExpr -> Factor .)
+    PLUS            reduce using rule 55 (MulExpr -> Factor .)
+    MINUS           reduce using rule 55 (MulExpr -> Factor .)
+    EQ              reduce using rule 55 (MulExpr -> Factor .)
+    NE              reduce using rule 55 (MulExpr -> Factor .)
+    LE              reduce using rule 55 (MulExpr -> Factor .)
+    LT              reduce using rule 55 (MulExpr -> Factor .)
+    GE              reduce using rule 55 (MulExpr -> Factor .)
+    GT              reduce using rule 55 (MulExpr -> Factor .)
+    SC              reduce using rule 55 (MulExpr -> Factor .)
+    AND             reduce using rule 55 (MulExpr -> Factor .)
+    OR              reduce using rule 55 (MulExpr -> Factor .)
+    RP              reduce using rule 55 (MulExpr -> Factor .)
+    RBK             reduce using rule 55 (MulExpr -> Factor .)
+
+
+state 59
+
+    (56) Factor -> Variable .
+
+    TIMES           reduce using rule 56 (Factor -> Variable .)
+    DIVIDE          reduce using rule 56 (Factor -> Variable .)
+    PLUS            reduce using rule 56 (Factor -> Variable .)
+    MINUS           reduce using rule 56 (Factor -> Variable .)
+    EQ              reduce using rule 56 (Factor -> Variable .)
+    NE              reduce using rule 56 (Factor -> Variable .)
+    LE              reduce using rule 56 (Factor -> Variable .)
+    LT              reduce using rule 56 (Factor -> Variable .)
+    GE              reduce using rule 56 (Factor -> Variable .)
+    GT              reduce using rule 56 (Factor -> Variable .)
+    SC              reduce using rule 56 (Factor -> Variable .)
+    AND             reduce using rule 56 (Factor -> Variable .)
+    OR              reduce using rule 56 (Factor -> Variable .)
+    RP              reduce using rule 56 (Factor -> Variable .)
+    RBK             reduce using rule 56 (Factor -> Variable .)
+
+
+state 60
+
+    (57) Factor -> Constant .
+
+    TIMES           reduce using rule 57 (Factor -> Constant .)
+    DIVIDE          reduce using rule 57 (Factor -> Constant .)
+    PLUS            reduce using rule 57 (Factor -> Constant .)
+    MINUS           reduce using rule 57 (Factor -> Constant .)
+    EQ              reduce using rule 57 (Factor -> Constant .)
+    NE              reduce using rule 57 (Factor -> Constant .)
+    LE              reduce using rule 57 (Factor -> Constant .)
+    LT              reduce using rule 57 (Factor -> Constant .)
+    GE              reduce using rule 57 (Factor -> Constant .)
+    GT              reduce using rule 57 (Factor -> Constant .)
+    SC              reduce using rule 57 (Factor -> Constant .)
+    AND             reduce using rule 57 (Factor -> Constant .)
+    OR              reduce using rule 57 (Factor -> Constant .)
+    RP              reduce using rule 57 (Factor -> Constant .)
+    RBK             reduce using rule 57 (Factor -> Constant .)
+
+
+state 61
+
+    (58) Factor -> IDENTIFIER . LP RP
+    (60) Variable -> IDENTIFIER .
+    (61) Variable -> IDENTIFIER . LBK Expr RBK
+
+    LP              shift and go to state 97
+    TIMES           reduce using rule 60 (Variable -> IDENTIFIER .)
+    DIVIDE          reduce using rule 60 (Variable -> IDENTIFIER .)
+    PLUS            reduce using rule 60 (Variable -> IDENTIFIER .)
+    MINUS           reduce using rule 60 (Variable -> IDENTIFIER .)
+    EQ              reduce using rule 60 (Variable -> IDENTIFIER .)
+    NE              reduce using rule 60 (Variable -> IDENTIFIER .)
+    LE              reduce using rule 60 (Variable -> IDENTIFIER .)
+    LT              reduce using rule 60 (Variable -> IDENTIFIER .)
+    GE              reduce using rule 60 (Variable -> IDENTIFIER .)
+    GT              reduce using rule 60 (Variable -> IDENTIFIER .)
+    SC              reduce using rule 60 (Variable -> IDENTIFIER .)
+    AND             reduce using rule 60 (Variable -> IDENTIFIER .)
+    OR              reduce using rule 60 (Variable -> IDENTIFIER .)
+    RP              reduce using rule 60 (Variable -> IDENTIFIER .)
+    RBK             reduce using rule 60 (Variable -> IDENTIFIER .)
+    LBK             shift and go to state 67
+
+
+state 62
+
+    (59) Factor -> LP . Expr RP
+    (39) Expr -> . Expr AND SimpleExpr
+    (40) Expr -> . Expr OR SimpleExpr
+    (41) Expr -> . SimpleExpr
+    (42) Expr -> . NOT SimpleExpr
+    (43) SimpleExpr -> . SimpleExpr EQ AddExpr
+    (44) SimpleExpr -> . SimpleExpr NE AddExpr
+    (45) SimpleExpr -> . SimpleExpr LE AddExpr
+    (46) SimpleExpr -> . SimpleExpr LT AddExpr
+    (47) SimpleExpr -> . SimpleExpr GE AddExpr
+    (48) SimpleExpr -> . SimpleExpr GT AddExpr
+    (49) SimpleExpr -> . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    NOT             shift and go to state 55
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    Expr                           shift and go to state 98
+    SimpleExpr                     shift and go to state 54
+    AddExpr                        shift and go to state 56
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 63
+
+    (63) Constant -> INTCON .
+
+    TIMES           reduce using rule 63 (Constant -> INTCON .)
+    DIVIDE          reduce using rule 63 (Constant -> INTCON .)
+    PLUS            reduce using rule 63 (Constant -> INTCON .)
+    MINUS           reduce using rule 63 (Constant -> INTCON .)
+    EQ              reduce using rule 63 (Constant -> INTCON .)
+    NE              reduce using rule 63 (Constant -> INTCON .)
+    LE              reduce using rule 63 (Constant -> INTCON .)
+    LT              reduce using rule 63 (Constant -> INTCON .)
+    GE              reduce using rule 63 (Constant -> INTCON .)
+    GT              reduce using rule 63 (Constant -> INTCON .)
+    SC              reduce using rule 63 (Constant -> INTCON .)
+    AND             reduce using rule 63 (Constant -> INTCON .)
+    OR              reduce using rule 63 (Constant -> INTCON .)
+    RP              reduce using rule 63 (Constant -> INTCON .)
+    RBK             reduce using rule 63 (Constant -> INTCON .)
+
+
+state 64
+
+    (64) Constant -> FLOATCON .
+
+    TIMES           reduce using rule 64 (Constant -> FLOATCON .)
+    DIVIDE          reduce using rule 64 (Constant -> FLOATCON .)
+    PLUS            reduce using rule 64 (Constant -> FLOATCON .)
+    MINUS           reduce using rule 64 (Constant -> FLOATCON .)
+    EQ              reduce using rule 64 (Constant -> FLOATCON .)
+    NE              reduce using rule 64 (Constant -> FLOATCON .)
+    LE              reduce using rule 64 (Constant -> FLOATCON .)
+    LT              reduce using rule 64 (Constant -> FLOATCON .)
+    GE              reduce using rule 64 (Constant -> FLOATCON .)
+    GT              reduce using rule 64 (Constant -> FLOATCON .)
+    SC              reduce using rule 64 (Constant -> FLOATCON .)
+    AND             reduce using rule 64 (Constant -> FLOATCON .)
+    OR              reduce using rule 64 (Constant -> FLOATCON .)
+    RP              reduce using rule 64 (Constant -> FLOATCON .)
+    RBK             reduce using rule 64 (Constant -> FLOATCON .)
+
+
+state 65
+
+    (37) ExitStatement -> EXIT SC .
+
+    RBR             reduce using rule 37 (ExitStatement -> EXIT SC .)
+    IF              reduce using rule 37 (ExitStatement -> EXIT SC .)
+    WHILE           reduce using rule 37 (ExitStatement -> EXIT SC .)
+    READ            reduce using rule 37 (ExitStatement -> EXIT SC .)
+    WRITE           reduce using rule 37 (ExitStatement -> EXIT SC .)
+    RETURN          reduce using rule 37 (ExitStatement -> EXIT SC .)
+    EXIT            reduce using rule 37 (ExitStatement -> EXIT SC .)
+    LBR             reduce using rule 37 (ExitStatement -> EXIT SC .)
+    IDENTIFIER      reduce using rule 37 (ExitStatement -> EXIT SC .)
+
+
+state 66
+
+    (38) CompoundStatement -> LBR StatementList . RBR
+    (19) StatementList -> StatementList . Statement
+    (20) Statement -> . Assignment
+    (21) Statement -> . IfStatement
+    (22) Statement -> . WhileStatement
+    (23) Statement -> . IOStatement
+    (24) Statement -> . ReturnStatement
+    (25) Statement -> . ExitStatement
+    (26) Statement -> . CompoundStatement
+    (27) Assignment -> . Variable ASSIGN Expr SC
+    (28) IfStatement -> . IF Test CompoundStatement
+    (29) IfStatement -> . IF Test CompoundStatement ELSE CompoundStatement
+    (31) WhileStatement -> . WHILE WhileExpr Statement
+    (33) IOStatement -> . READ LP Variable RP SC
+    (34) IOStatement -> . WRITE LP Expr RP SC
+    (35) IOStatement -> . WRITE LP StringConstant RP SC
+    (36) ReturnStatement -> . RETURN Expr SC
+    (37) ExitStatement -> . EXIT SC
+    (38) CompoundStatement -> . LBR StatementList RBR
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+
+    RBR             shift and go to state 99
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    READ            shift and go to state 30
+    WRITE           shift and go to state 31
+    RETURN          shift and go to state 32
+    EXIT            shift and go to state 33
+    LBR             shift and go to state 34
+    IDENTIFIER      shift and go to state 35
+
+    Statement                      shift and go to state 45
+    Assignment                     shift and go to state 20
+    IfStatement                    shift and go to state 21
+    WhileStatement                 shift and go to state 22
+    IOStatement                    shift and go to state 23
+    ReturnStatement                shift and go to state 24
+    ExitStatement                  shift and go to state 25
+    CompoundStatement              shift and go to state 26
+    Variable                       shift and go to state 27
+
+state 67
+
+    (61) Variable -> IDENTIFIER LBK . Expr RBK
+    (39) Expr -> . Expr AND SimpleExpr
+    (40) Expr -> . Expr OR SimpleExpr
+    (41) Expr -> . SimpleExpr
+    (42) Expr -> . NOT SimpleExpr
+    (43) SimpleExpr -> . SimpleExpr EQ AddExpr
+    (44) SimpleExpr -> . SimpleExpr NE AddExpr
+    (45) SimpleExpr -> . SimpleExpr LE AddExpr
+    (46) SimpleExpr -> . SimpleExpr LT AddExpr
+    (47) SimpleExpr -> . SimpleExpr GE AddExpr
+    (48) SimpleExpr -> . SimpleExpr GT AddExpr
+    (49) SimpleExpr -> . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    NOT             shift and go to state 55
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    Expr                           shift and go to state 100
+    SimpleExpr                     shift and go to state 54
+    AddExpr                        shift and go to state 56
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 68
+
+    (11) DeclList -> DeclList Type . IdentifierList SC
+    (12) IdentifierList -> . VarDecl
+    (13) IdentifierList -> . IdentifierList CM VarDecl
+    (14) VarDecl -> . IDENTIFIER
+    (15) VarDecl -> . IDENTIFIER LBK INTCON RBK
+
+    IDENTIFIER      shift and go to state 69
+
+    IdentifierList                 shift and go to state 38
+    VarDecl                        shift and go to state 14
+
+state 69
+
+    (14) VarDecl -> IDENTIFIER .
+    (15) VarDecl -> IDENTIFIER . LBK INTCON RBK
+
+    SC              reduce using rule 14 (VarDecl -> IDENTIFIER .)
+    CM              reduce using rule 14 (VarDecl -> IDENTIFIER .)
+    LBK             shift and go to state 42
+
+
+state 70
+
+    (11) DeclList -> DeclList Type IdentifierList SC .
+
+    INT             reduce using rule 11 (DeclList -> DeclList Type IdentifierList SC .)
+    FLOAT           reduce using rule 11 (DeclList -> DeclList Type IdentifierList SC .)
+    IF              reduce using rule 11 (DeclList -> DeclList Type IdentifierList SC .)
+    WHILE           reduce using rule 11 (DeclList -> DeclList Type IdentifierList SC .)
+    READ            reduce using rule 11 (DeclList -> DeclList Type IdentifierList SC .)
+    WRITE           reduce using rule 11 (DeclList -> DeclList Type IdentifierList SC .)
+    RETURN          reduce using rule 11 (DeclList -> DeclList Type IdentifierList SC .)
+    EXIT            reduce using rule 11 (DeclList -> DeclList Type IdentifierList SC .)
+    LBR             reduce using rule 11 (DeclList -> DeclList Type IdentifierList SC .)
+    IDENTIFIER      reduce using rule 11 (DeclList -> DeclList Type IdentifierList SC .)
+
+
+state 71
+
+    (13) IdentifierList -> IdentifierList CM VarDecl .
+
+    SC              reduce using rule 13 (IdentifierList -> IdentifierList CM VarDecl .)
+    CM              reduce using rule 13 (IdentifierList -> IdentifierList CM VarDecl .)
+
+
+state 72
+
+    (8) FunctionDecl -> Type IDENTIFIER LP RP . LBR
+
+    LBR             shift and go to state 101
+
+
+state 73
+
+    (15) VarDecl -> IDENTIFIER LBK INTCON . RBK
+
+    RBK             shift and go to state 102
+
+
+state 74
+
+    (27) Assignment -> Variable ASSIGN Expr . SC
+    (39) Expr -> Expr . AND SimpleExpr
+    (40) Expr -> Expr . OR SimpleExpr
+
+    SC              shift and go to state 103
+    AND             shift and go to state 84
+    OR              shift and go to state 85
+
+
+state 75
+
+    (28) IfStatement -> IF Test CompoundStatement .
+    (29) IfStatement -> IF Test CompoundStatement . ELSE CompoundStatement
+
+    RBR             reduce using rule 28 (IfStatement -> IF Test CompoundStatement .)
+    IF              reduce using rule 28 (IfStatement -> IF Test CompoundStatement .)
+    WHILE           reduce using rule 28 (IfStatement -> IF Test CompoundStatement .)
+    READ            reduce using rule 28 (IfStatement -> IF Test CompoundStatement .)
+    WRITE           reduce using rule 28 (IfStatement -> IF Test CompoundStatement .)
+    RETURN          reduce using rule 28 (IfStatement -> IF Test CompoundStatement .)
+    EXIT            reduce using rule 28 (IfStatement -> IF Test CompoundStatement .)
+    LBR             reduce using rule 28 (IfStatement -> IF Test CompoundStatement .)
+    IDENTIFIER      reduce using rule 28 (IfStatement -> IF Test CompoundStatement .)
+    ELSE            shift and go to state 104
+
+
+state 76
+
+    (30) Test -> LP Expr . RP
+    (39) Expr -> Expr . AND SimpleExpr
+    (40) Expr -> Expr . OR SimpleExpr
+
+    RP              shift and go to state 105
+    AND             shift and go to state 84
+    OR              shift and go to state 85
+
+
+state 77
+
+    (31) WhileStatement -> WHILE WhileExpr Statement .
+
+    RBR             reduce using rule 31 (WhileStatement -> WHILE WhileExpr Statement .)
+    IF              reduce using rule 31 (WhileStatement -> WHILE WhileExpr Statement .)
+    WHILE           reduce using rule 31 (WhileStatement -> WHILE WhileExpr Statement .)
+    READ            reduce using rule 31 (WhileStatement -> WHILE WhileExpr Statement .)
+    WRITE           reduce using rule 31 (WhileStatement -> WHILE WhileExpr Statement .)
+    RETURN          reduce using rule 31 (WhileStatement -> WHILE WhileExpr Statement .)
+    EXIT            reduce using rule 31 (WhileStatement -> WHILE WhileExpr Statement .)
+    LBR             reduce using rule 31 (WhileStatement -> WHILE WhileExpr Statement .)
+    IDENTIFIER      reduce using rule 31 (WhileStatement -> WHILE WhileExpr Statement .)
+
+
+state 78
+
+    (32) WhileExpr -> LP Expr . RP
+    (39) Expr -> Expr . AND SimpleExpr
+    (40) Expr -> Expr . OR SimpleExpr
+
+    RP              shift and go to state 106
+    AND             shift and go to state 84
+    OR              shift and go to state 85
+
+
+state 79
+
+    (33) IOStatement -> READ LP Variable . RP SC
+
+    RP              shift and go to state 107
+
+
+state 80
+
+    (34) IOStatement -> WRITE LP Expr . RP SC
+    (39) Expr -> Expr . AND SimpleExpr
+    (40) Expr -> Expr . OR SimpleExpr
+
+    RP              shift and go to state 108
+    AND             shift and go to state 84
+    OR              shift and go to state 85
+
+
+state 81
+
+    (35) IOStatement -> WRITE LP StringConstant . RP SC
+
+    RP              shift and go to state 109
+
+
+state 82
+
+    (62) StringConstant -> STRING .
+
+    RP              reduce using rule 62 (StringConstant -> STRING .)
+
+
+state 83
+
+    (36) ReturnStatement -> RETURN Expr SC .
+
+    RBR             reduce using rule 36 (ReturnStatement -> RETURN Expr SC .)
+    IF              reduce using rule 36 (ReturnStatement -> RETURN Expr SC .)
+    WHILE           reduce using rule 36 (ReturnStatement -> RETURN Expr SC .)
+    READ            reduce using rule 36 (ReturnStatement -> RETURN Expr SC .)
+    WRITE           reduce using rule 36 (ReturnStatement -> RETURN Expr SC .)
+    RETURN          reduce using rule 36 (ReturnStatement -> RETURN Expr SC .)
+    EXIT            reduce using rule 36 (ReturnStatement -> RETURN Expr SC .)
+    LBR             reduce using rule 36 (ReturnStatement -> RETURN Expr SC .)
+    IDENTIFIER      reduce using rule 36 (ReturnStatement -> RETURN Expr SC .)
+
+
+state 84
+
+    (39) Expr -> Expr AND . SimpleExpr
+    (43) SimpleExpr -> . SimpleExpr EQ AddExpr
+    (44) SimpleExpr -> . SimpleExpr NE AddExpr
+    (45) SimpleExpr -> . SimpleExpr LE AddExpr
+    (46) SimpleExpr -> . SimpleExpr LT AddExpr
+    (47) SimpleExpr -> . SimpleExpr GE AddExpr
+    (48) SimpleExpr -> . SimpleExpr GT AddExpr
+    (49) SimpleExpr -> . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    SimpleExpr                     shift and go to state 110
+    AddExpr                        shift and go to state 56
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 85
+
+    (40) Expr -> Expr OR . SimpleExpr
+    (43) SimpleExpr -> . SimpleExpr EQ AddExpr
+    (44) SimpleExpr -> . SimpleExpr NE AddExpr
+    (45) SimpleExpr -> . SimpleExpr LE AddExpr
+    (46) SimpleExpr -> . SimpleExpr LT AddExpr
+    (47) SimpleExpr -> . SimpleExpr GE AddExpr
+    (48) SimpleExpr -> . SimpleExpr GT AddExpr
+    (49) SimpleExpr -> . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    SimpleExpr                     shift and go to state 111
+    AddExpr                        shift and go to state 56
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 86
+
+    (43) SimpleExpr -> SimpleExpr EQ . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    AddExpr                        shift and go to state 112
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 87
+
+    (44) SimpleExpr -> SimpleExpr NE . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    AddExpr                        shift and go to state 113
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 88
+
+    (45) SimpleExpr -> SimpleExpr LE . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    AddExpr                        shift and go to state 114
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 89
+
+    (46) SimpleExpr -> SimpleExpr LT . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    AddExpr                        shift and go to state 115
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 90
+
+    (47) SimpleExpr -> SimpleExpr GE . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    AddExpr                        shift and go to state 116
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 91
+
+    (48) SimpleExpr -> SimpleExpr GT . AddExpr
+    (50) AddExpr -> . AddExpr PLUS MulExpr
+    (51) AddExpr -> . AddExpr MINUS MulExpr
+    (52) AddExpr -> . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    AddExpr                        shift and go to state 117
+    MulExpr                        shift and go to state 57
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 92
+
+    (42) Expr -> NOT SimpleExpr .
+    (43) SimpleExpr -> SimpleExpr . EQ AddExpr
+    (44) SimpleExpr -> SimpleExpr . NE AddExpr
+    (45) SimpleExpr -> SimpleExpr . LE AddExpr
+    (46) SimpleExpr -> SimpleExpr . LT AddExpr
+    (47) SimpleExpr -> SimpleExpr . GE AddExpr
+    (48) SimpleExpr -> SimpleExpr . GT AddExpr
+
+    SC              reduce using rule 42 (Expr -> NOT SimpleExpr .)
+    AND             reduce using rule 42 (Expr -> NOT SimpleExpr .)
+    OR              reduce using rule 42 (Expr -> NOT SimpleExpr .)
+    RP              reduce using rule 42 (Expr -> NOT SimpleExpr .)
+    RBK             reduce using rule 42 (Expr -> NOT SimpleExpr .)
+    EQ              shift and go to state 86
+    NE              shift and go to state 87
+    LE              shift and go to state 88
+    LT              shift and go to state 89
+    GE              shift and go to state 90
+    GT              shift and go to state 91
+
+
+state 93
+
+    (50) AddExpr -> AddExpr PLUS . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    MulExpr                        shift and go to state 118
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 94
+
+    (51) AddExpr -> AddExpr MINUS . MulExpr
+    (53) MulExpr -> . MulExpr TIMES Factor
+    (54) MulExpr -> . MulExpr DIVIDE Factor
+    (55) MulExpr -> . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    MulExpr                        shift and go to state 119
+    Factor                         shift and go to state 58
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 95
+
+    (53) MulExpr -> MulExpr TIMES . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    Factor                         shift and go to state 120
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 96
+
+    (54) MulExpr -> MulExpr DIVIDE . Factor
+    (56) Factor -> . Variable
+    (57) Factor -> . Constant
+    (58) Factor -> . IDENTIFIER LP RP
+    (59) Factor -> . LP Expr RP
+    (60) Variable -> . IDENTIFIER
+    (61) Variable -> . IDENTIFIER LBK Expr RBK
+    (63) Constant -> . INTCON
+    (64) Constant -> . FLOATCON
+
+    IDENTIFIER      shift and go to state 61
+    LP              shift and go to state 62
+    INTCON          shift and go to state 63
+    FLOATCON        shift and go to state 64
+
+    Factor                         shift and go to state 121
+    Variable                       shift and go to state 59
+    Constant                       shift and go to state 60
+
+state 97
+
+    (58) Factor -> IDENTIFIER LP . RP
+
+    RP              shift and go to state 122
+
+
+state 98
+
+    (59) Factor -> LP Expr . RP
+    (39) Expr -> Expr . AND SimpleExpr
+    (40) Expr -> Expr . OR SimpleExpr
+
+    RP              shift and go to state 123
+    AND             shift and go to state 84
+    OR              shift and go to state 85
+
+
+state 99
+
+    (38) CompoundStatement -> LBR StatementList RBR .
+
+    RBR             reduce using rule 38 (CompoundStatement -> LBR StatementList RBR .)
+    IF              reduce using rule 38 (CompoundStatement -> LBR StatementList RBR .)
+    WHILE           reduce using rule 38 (CompoundStatement -> LBR StatementList RBR .)
+    READ            reduce using rule 38 (CompoundStatement -> LBR StatementList RBR .)
+    WRITE           reduce using rule 38 (CompoundStatement -> LBR StatementList RBR .)
+    RETURN          reduce using rule 38 (CompoundStatement -> LBR StatementList RBR .)
+    EXIT            reduce using rule 38 (CompoundStatement -> LBR StatementList RBR .)
+    LBR             reduce using rule 38 (CompoundStatement -> LBR StatementList RBR .)
+    IDENTIFIER      reduce using rule 38 (CompoundStatement -> LBR StatementList RBR .)
+    ELSE            reduce using rule 38 (CompoundStatement -> LBR StatementList RBR .)
+
+
+state 100
+
+    (61) Variable -> IDENTIFIER LBK Expr . RBK
+    (39) Expr -> Expr . AND SimpleExpr
+    (40) Expr -> Expr . OR SimpleExpr
+
+    RBK             shift and go to state 124
+    AND             shift and go to state 84
+    OR              shift and go to state 85
+
+
+state 101
+
+    (8) FunctionDecl -> Type IDENTIFIER LP RP LBR .
+
+    INT             reduce using rule 8 (FunctionDecl -> Type IDENTIFIER LP RP LBR .)
+    FLOAT           reduce using rule 8 (FunctionDecl -> Type IDENTIFIER LP RP LBR .)
+    IF              reduce using rule 8 (FunctionDecl -> Type IDENTIFIER LP RP LBR .)
+    WHILE           reduce using rule 8 (FunctionDecl -> Type IDENTIFIER LP RP LBR .)
+    READ            reduce using rule 8 (FunctionDecl -> Type IDENTIFIER LP RP LBR .)
+    WRITE           reduce using rule 8 (FunctionDecl -> Type IDENTIFIER LP RP LBR .)
+    RETURN          reduce using rule 8 (FunctionDecl -> Type IDENTIFIER LP RP LBR .)
+    EXIT            reduce using rule 8 (FunctionDecl -> Type IDENTIFIER LP RP LBR .)
+    LBR             reduce using rule 8 (FunctionDecl -> Type IDENTIFIER LP RP LBR .)
+    IDENTIFIER      reduce using rule 8 (FunctionDecl -> Type IDENTIFIER LP RP LBR .)
+
+
+state 102
+
+    (15) VarDecl -> IDENTIFIER LBK INTCON RBK .
+
+    SC              reduce using rule 15 (VarDecl -> IDENTIFIER LBK INTCON RBK .)
+    CM              reduce using rule 15 (VarDecl -> IDENTIFIER LBK INTCON RBK .)
+
+
+state 103
+
+    (27) Assignment -> Variable ASSIGN Expr SC .
+
+    RBR             reduce using rule 27 (Assignment -> Variable ASSIGN Expr SC .)
+    IF              reduce using rule 27 (Assignment -> Variable ASSIGN Expr SC .)
+    WHILE           reduce using rule 27 (Assignment -> Variable ASSIGN Expr SC .)
+    READ            reduce using rule 27 (Assignment -> Variable ASSIGN Expr SC .)
+    WRITE           reduce using rule 27 (Assignment -> Variable ASSIGN Expr SC .)
+    RETURN          reduce using rule 27 (Assignment -> Variable ASSIGN Expr SC .)
+    EXIT            reduce using rule 27 (Assignment -> Variable ASSIGN Expr SC .)
+    LBR             reduce using rule 27 (Assignment -> Variable ASSIGN Expr SC .)
+    IDENTIFIER      reduce using rule 27 (Assignment -> Variable ASSIGN Expr SC .)
+
+
+state 104
+
+    (29) IfStatement -> IF Test CompoundStatement ELSE . CompoundStatement
+    (38) CompoundStatement -> . LBR StatementList RBR
+
+    LBR             shift and go to state 34
+
+    CompoundStatement              shift and go to state 125
+
+state 105
+
+    (30) Test -> LP Expr RP .
+
+    LBR             reduce using rule 30 (Test -> LP Expr RP .)
+
+
+state 106
+
+    (32) WhileExpr -> LP Expr RP .
+
+    IF              reduce using rule 32 (WhileExpr -> LP Expr RP .)
+    WHILE           reduce using rule 32 (WhileExpr -> LP Expr RP .)
+    READ            reduce using rule 32 (WhileExpr -> LP Expr RP .)
+    WRITE           reduce using rule 32 (WhileExpr -> LP Expr RP .)
+    RETURN          reduce using rule 32 (WhileExpr -> LP Expr RP .)
+    EXIT            reduce using rule 32 (WhileExpr -> LP Expr RP .)
+    LBR             reduce using rule 32 (WhileExpr -> LP Expr RP .)
+    IDENTIFIER      reduce using rule 32 (WhileExpr -> LP Expr RP .)
+
+
+state 107
+
+    (33) IOStatement -> READ LP Variable RP . SC
+
+    SC              shift and go to state 126
+
+
+state 108
+
+    (34) IOStatement -> WRITE LP Expr RP . SC
+
+    SC              shift and go to state 127
+
+
+state 109
+
+    (35) IOStatement -> WRITE LP StringConstant RP . SC
+
+    SC              shift and go to state 128
+
+
+state 110
+
+    (39) Expr -> Expr AND SimpleExpr .
+    (43) SimpleExpr -> SimpleExpr . EQ AddExpr
+    (44) SimpleExpr -> SimpleExpr . NE AddExpr
+    (45) SimpleExpr -> SimpleExpr . LE AddExpr
+    (46) SimpleExpr -> SimpleExpr . LT AddExpr
+    (47) SimpleExpr -> SimpleExpr . GE AddExpr
+    (48) SimpleExpr -> SimpleExpr . GT AddExpr
+
+    SC              reduce using rule 39 (Expr -> Expr AND SimpleExpr .)
+    AND             reduce using rule 39 (Expr -> Expr AND SimpleExpr .)
+    OR              reduce using rule 39 (Expr -> Expr AND SimpleExpr .)
+    RP              reduce using rule 39 (Expr -> Expr AND SimpleExpr .)
+    RBK             reduce using rule 39 (Expr -> Expr AND SimpleExpr .)
+    EQ              shift and go to state 86
+    NE              shift and go to state 87
+    LE              shift and go to state 88
+    LT              shift and go to state 89
+    GE              shift and go to state 90
+    GT              shift and go to state 91
+
+
+state 111
+
+    (40) Expr -> Expr OR SimpleExpr .
+    (43) SimpleExpr -> SimpleExpr . EQ AddExpr
+    (44) SimpleExpr -> SimpleExpr . NE AddExpr
+    (45) SimpleExpr -> SimpleExpr . LE AddExpr
+    (46) SimpleExpr -> SimpleExpr . LT AddExpr
+    (47) SimpleExpr -> SimpleExpr . GE AddExpr
+    (48) SimpleExpr -> SimpleExpr . GT AddExpr
+
+    SC              reduce using rule 40 (Expr -> Expr OR SimpleExpr .)
+    AND             reduce using rule 40 (Expr -> Expr OR SimpleExpr .)
+    OR              reduce using rule 40 (Expr -> Expr OR SimpleExpr .)
+    RP              reduce using rule 40 (Expr -> Expr OR SimpleExpr .)
+    RBK             reduce using rule 40 (Expr -> Expr OR SimpleExpr .)
+    EQ              shift and go to state 86
+    NE              shift and go to state 87
+    LE              shift and go to state 88
+    LT              shift and go to state 89
+    GE              shift and go to state 90
+    GT              shift and go to state 91
+
+
+state 112
+
+    (43) SimpleExpr -> SimpleExpr EQ AddExpr .
+    (50) AddExpr -> AddExpr . PLUS MulExpr
+    (51) AddExpr -> AddExpr . MINUS MulExpr
+
+    EQ              reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    NE              reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    LE              reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    LT              reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    GE              reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    GT              reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    SC              reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    AND             reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    OR              reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    RP              reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    RBK             reduce using rule 43 (SimpleExpr -> SimpleExpr EQ AddExpr .)
+    PLUS            shift and go to state 93
+    MINUS           shift and go to state 94
+
+
+state 113
+
+    (44) SimpleExpr -> SimpleExpr NE AddExpr .
+    (50) AddExpr -> AddExpr . PLUS MulExpr
+    (51) AddExpr -> AddExpr . MINUS MulExpr
+
+    EQ              reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    NE              reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    LE              reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    LT              reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    GE              reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    GT              reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    SC              reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    AND             reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    OR              reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    RP              reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    RBK             reduce using rule 44 (SimpleExpr -> SimpleExpr NE AddExpr .)
+    PLUS            shift and go to state 93
+    MINUS           shift and go to state 94
+
+
+state 114
+
+    (45) SimpleExpr -> SimpleExpr LE AddExpr .
+    (50) AddExpr -> AddExpr . PLUS MulExpr
+    (51) AddExpr -> AddExpr . MINUS MulExpr
+
+    EQ              reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    NE              reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    LE              reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    LT              reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    GE              reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    GT              reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    SC              reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    AND             reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    OR              reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    RP              reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    RBK             reduce using rule 45 (SimpleExpr -> SimpleExpr LE AddExpr .)
+    PLUS            shift and go to state 93
+    MINUS           shift and go to state 94
+
+
+state 115
+
+    (46) SimpleExpr -> SimpleExpr LT AddExpr .
+    (50) AddExpr -> AddExpr . PLUS MulExpr
+    (51) AddExpr -> AddExpr . MINUS MulExpr
+
+    EQ              reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    NE              reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    LE              reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    LT              reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    GE              reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    GT              reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    SC              reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    AND             reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    OR              reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    RP              reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    RBK             reduce using rule 46 (SimpleExpr -> SimpleExpr LT AddExpr .)
+    PLUS            shift and go to state 93
+    MINUS           shift and go to state 94
+
+
+state 116
+
+    (47) SimpleExpr -> SimpleExpr GE AddExpr .
+    (50) AddExpr -> AddExpr . PLUS MulExpr
+    (51) AddExpr -> AddExpr . MINUS MulExpr
+
+    EQ              reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    NE              reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    LE              reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    LT              reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    GE              reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    GT              reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    SC              reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    AND             reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    OR              reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    RP              reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    RBK             reduce using rule 47 (SimpleExpr -> SimpleExpr GE AddExpr .)
+    PLUS            shift and go to state 93
+    MINUS           shift and go to state 94
+
+
+state 117
+
+    (48) SimpleExpr -> SimpleExpr GT AddExpr .
+    (50) AddExpr -> AddExpr . PLUS MulExpr
+    (51) AddExpr -> AddExpr . MINUS MulExpr
+
+    EQ              reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    NE              reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    LE              reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    LT              reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    GE              reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    GT              reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    SC              reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    AND             reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    OR              reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    RP              reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    RBK             reduce using rule 48 (SimpleExpr -> SimpleExpr GT AddExpr .)
+    PLUS            shift and go to state 93
+    MINUS           shift and go to state 94
+
+
+state 118
+
+    (50) AddExpr -> AddExpr PLUS MulExpr .
+    (53) MulExpr -> MulExpr . TIMES Factor
+    (54) MulExpr -> MulExpr . DIVIDE Factor
+
+    PLUS            reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    MINUS           reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    EQ              reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    NE              reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    LE              reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    LT              reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    GE              reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    GT              reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    SC              reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    AND             reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    OR              reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    RP              reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    RBK             reduce using rule 50 (AddExpr -> AddExpr PLUS MulExpr .)
+    TIMES           shift and go to state 95
+    DIVIDE          shift and go to state 96
+
+
+state 119
+
+    (51) AddExpr -> AddExpr MINUS MulExpr .
+    (53) MulExpr -> MulExpr . TIMES Factor
+    (54) MulExpr -> MulExpr . DIVIDE Factor
+
+    PLUS            reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    MINUS           reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    EQ              reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    NE              reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    LE              reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    LT              reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    GE              reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    GT              reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    SC              reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    AND             reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    OR              reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    RP              reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    RBK             reduce using rule 51 (AddExpr -> AddExpr MINUS MulExpr .)
+    TIMES           shift and go to state 95
+    DIVIDE          shift and go to state 96
+
+
+state 120
+
+    (53) MulExpr -> MulExpr TIMES Factor .
+
+    TIMES           reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    DIVIDE          reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    PLUS            reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    MINUS           reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    EQ              reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    NE              reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    LE              reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    LT              reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    GE              reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    GT              reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    SC              reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    AND             reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    OR              reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    RP              reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+    RBK             reduce using rule 53 (MulExpr -> MulExpr TIMES Factor .)
+
+
+state 121
+
+    (54) MulExpr -> MulExpr DIVIDE Factor .
+
+    TIMES           reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    DIVIDE          reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    PLUS            reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    MINUS           reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    EQ              reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    NE              reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    LE              reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    LT              reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    GE              reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    GT              reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    SC              reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    AND             reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    OR              reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    RP              reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+    RBK             reduce using rule 54 (MulExpr -> MulExpr DIVIDE Factor .)
+
+
+state 122
+
+    (58) Factor -> IDENTIFIER LP RP .
+
+    TIMES           reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    DIVIDE          reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    PLUS            reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    MINUS           reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    EQ              reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    NE              reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    LE              reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    LT              reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    GE              reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    GT              reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    SC              reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    AND             reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    OR              reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    RP              reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+    RBK             reduce using rule 58 (Factor -> IDENTIFIER LP RP .)
+
+
+state 123
+
+    (59) Factor -> LP Expr RP .
+
+    TIMES           reduce using rule 59 (Factor -> LP Expr RP .)
+    DIVIDE          reduce using rule 59 (Factor -> LP Expr RP .)
+    PLUS            reduce using rule 59 (Factor -> LP Expr RP .)
+    MINUS           reduce using rule 59 (Factor -> LP Expr RP .)
+    EQ              reduce using rule 59 (Factor -> LP Expr RP .)
+    NE              reduce using rule 59 (Factor -> LP Expr RP .)
+    LE              reduce using rule 59 (Factor -> LP Expr RP .)
+    LT              reduce using rule 59 (Factor -> LP Expr RP .)
+    GE              reduce using rule 59 (Factor -> LP Expr RP .)
+    GT              reduce using rule 59 (Factor -> LP Expr RP .)
+    SC              reduce using rule 59 (Factor -> LP Expr RP .)
+    AND             reduce using rule 59 (Factor -> LP Expr RP .)
+    OR              reduce using rule 59 (Factor -> LP Expr RP .)
+    RP              reduce using rule 59 (Factor -> LP Expr RP .)
+    RBK             reduce using rule 59 (Factor -> LP Expr RP .)
+
+
+state 124
+
+    (61) Variable -> IDENTIFIER LBK Expr RBK .
+
+    ASSIGN          reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    TIMES           reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    DIVIDE          reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    PLUS            reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    MINUS           reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    EQ              reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    NE              reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    LE              reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    LT              reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    GE              reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    GT              reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    SC              reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    AND             reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    OR              reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    RP              reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+    RBK             reduce using rule 61 (Variable -> IDENTIFIER LBK Expr RBK .)
+
+
+state 125
+
+    (29) IfStatement -> IF Test CompoundStatement ELSE CompoundStatement .
+
+    RBR             reduce using rule 29 (IfStatement -> IF Test CompoundStatement ELSE CompoundStatement .)
+    IF              reduce using rule 29 (IfStatement -> IF Test CompoundStatement ELSE CompoundStatement .)
+    WHILE           reduce using rule 29 (IfStatement -> IF Test CompoundStatement ELSE CompoundStatement .)
+    READ            reduce using rule 29 (IfStatement -> IF Test CompoundStatement ELSE CompoundStatement .)
+    WRITE           reduce using rule 29 (IfStatement -> IF Test CompoundStatement ELSE CompoundStatement .)
+    RETURN          reduce using rule 29 (IfStatement -> IF Test CompoundStatement ELSE CompoundStatement .)
+    EXIT            reduce using rule 29 (IfStatement -> IF Test CompoundStatement ELSE CompoundStatement .)
+    LBR             reduce using rule 29 (IfStatement -> IF Test CompoundStatement ELSE CompoundStatement .)
+    IDENTIFIER      reduce using rule 29 (IfStatement -> IF Test CompoundStatement ELSE CompoundStatement .)
+
+
+state 126
+
+    (33) IOStatement -> READ LP Variable RP SC .
+
+    RBR             reduce using rule 33 (IOStatement -> READ LP Variable RP SC .)
+    IF              reduce using rule 33 (IOStatement -> READ LP Variable RP SC .)
+    WHILE           reduce using rule 33 (IOStatement -> READ LP Variable RP SC .)
+    READ            reduce using rule 33 (IOStatement -> READ LP Variable RP SC .)
+    WRITE           reduce using rule 33 (IOStatement -> READ LP Variable RP SC .)
+    RETURN          reduce using rule 33 (IOStatement -> READ LP Variable RP SC .)
+    EXIT            reduce using rule 33 (IOStatement -> READ LP Variable RP SC .)
+    LBR             reduce using rule 33 (IOStatement -> READ LP Variable RP SC .)
+    IDENTIFIER      reduce using rule 33 (IOStatement -> READ LP Variable RP SC .)
+
+
+state 127
+
+    (34) IOStatement -> WRITE LP Expr RP SC .
+
+    RBR             reduce using rule 34 (IOStatement -> WRITE LP Expr RP SC .)
+    IF              reduce using rule 34 (IOStatement -> WRITE LP Expr RP SC .)
+    WHILE           reduce using rule 34 (IOStatement -> WRITE LP Expr RP SC .)
+    READ            reduce using rule 34 (IOStatement -> WRITE LP Expr RP SC .)
+    WRITE           reduce using rule 34 (IOStatement -> WRITE LP Expr RP SC .)
+    RETURN          reduce using rule 34 (IOStatement -> WRITE LP Expr RP SC .)
+    EXIT            reduce using rule 34 (IOStatement -> WRITE LP Expr RP SC .)
+    LBR             reduce using rule 34 (IOStatement -> WRITE LP Expr RP SC .)
+    IDENTIFIER      reduce using rule 34 (IOStatement -> WRITE LP Expr RP SC .)
+
+
+state 128
+
+    (35) IOStatement -> WRITE LP StringConstant RP SC .
+
+    RBR             reduce using rule 35 (IOStatement -> WRITE LP StringConstant RP SC .)
+    IF              reduce using rule 35 (IOStatement -> WRITE LP StringConstant RP SC .)
+    WHILE           reduce using rule 35 (IOStatement -> WRITE LP StringConstant RP SC .)
+    READ            reduce using rule 35 (IOStatement -> WRITE LP StringConstant RP SC .)
+    WRITE           reduce using rule 35 (IOStatement -> WRITE LP StringConstant RP SC .)
+    RETURN          reduce using rule 35 (IOStatement -> WRITE LP StringConstant RP SC .)
+    EXIT            reduce using rule 35 (IOStatement -> WRITE LP StringConstant RP SC .)
+    LBR             reduce using rule 35 (IOStatement -> WRITE LP StringConstant RP SC .)
+    IDENTIFIER      reduce using rule 35 (IOStatement -> WRITE LP StringConstant RP SC .)
+

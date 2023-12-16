@@ -1,0 +1,9 @@
+int main() {
+int x, y;
+read(x); read(y);
+while ((x != 0) || (y != 0)) {
+write (x*y);
+read (x); read (y);
+}
+exit;
+}
