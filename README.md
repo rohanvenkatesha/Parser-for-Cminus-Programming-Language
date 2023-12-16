@@ -14,6 +14,7 @@ floating point numbers.
 are: int, float, if, else, exit, while, read, write, and return.
 Ply is a Python library that provides a set of tools to write lexical and syntactic analyzers. You will now add the 
 parsing code to generate parse tree (abstract syntax tree - AST) of the given cminus code snippet.
+
 You can use the following hints to write the parser rules:
 • Use the p_<name> function syntax to define a rule. The <name> part should match the 
 corresponding non-terminal in the grammar.
