@@ -342,7 +342,7 @@ def parse_source_code(file_name):
     return result
 
 # Example usage
-file_path = r"/workspaces/pa4-parser-vrohan10/source_code_1.cminus"
+file_path = r"/workspaces/Parser-for-Cminus-Programming-Language/source_code_1.cminus"
 
 result_parse=parse_source_code(file_path)
 
