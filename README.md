@@ -145,11 +145,3 @@ Parser-for-Cminus-Programming-Language/
 - **Extended Language Features**: Add support for additional data types, functions, and more complex control flow constructs.
 
 ---
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
----
-
-Let me know if you need further adjustments!
