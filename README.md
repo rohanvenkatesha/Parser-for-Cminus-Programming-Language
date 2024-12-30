@@ -1,28 +1,155 @@
-# Parser-for-Cminus-Programming-Language
+# Parser for Cminus Programming Language
 
-Language Specification:
-Language Specification: The self-designed language is called cminus and it has the following features:
-• It is a case-sensitive language that uses ASCII characters.
-• It supports only two data types: basic type int and a standard data type float.
-• It supports arithmetic, logical, relational, and assignment operators.
-• It supports if-else, while, and compound statements for control flow.
-• It supports single-line and multi-line comments that start with /* and end with */
-• It supports identifiers that start with a letter and can contain alphanumeric characters.
-• It supports literals that are enclosed in single quotes for strings, and supports only decimal notation for 
-floating point numbers.
-• It supports keywords that are reserved for the language and cannot be used as identifiers. The keywords
-are: int, float, if, else, exit, while, read, write, and return.
-Ply is a Python library that provides a set of tools to write lexical and syntactic analyzers. You will now add the 
-parsing code to generate parse tree (abstract syntax tree - AST) of the given cminus code snippet.
+This repository implements a **lexical** and **syntactical** analyzer for the **Cminus** programming language, a custom-designed, case-sensitive language. The parser generates an **Abstract Syntax Tree (AST)** for a given Cminus code snippet, representing the hierarchical structure of the code according to its grammar.
 
-You can use the following hints to write the parser rules:
-• Use the p_<name> function syntax to define a rule. The <name> part should match the 
-corresponding non-terminal in the grammar.
-• Use the p[0], p[1], …, p[n] syntax to access the symbols on the right-hand side of the rule. The p[0] symbol 
-is the result of the rule.
-• Use the p.slice[n] syntax to access the token object of the n-th symbol. The token object has attributes 
-such as type, value, lineno, and lexpos.
-• Use the p_error function to handle syntax errors. The function takes a single argument which is the token 
-object where the error occurred. You can print an error message and skip the rest of the input.
-• Use the yacc function to create the parser object. You can pass the lexer object and the start symbol as 
-arguments.
+The project uses **PLY (Python Lex-Yacc)**, a Python library, to build the lexer and parser. The **lexical analysis** is performed using a separate lexical analyzer defined in the [Lexical Analyzer for Cminus Programming Language](https://github.com/rohanvenkatesha/Lexical-Analyzer-for-Cminus-Programming-Language) repository.
+
+---
+
+## Features
+
+- **Lexical Analysis**: Tokenizes Cminus code into recognized lexemes (keywords, identifiers, literals, etc.), as defined in the [Lexical Analyzer for Cminus](https://github.com/rohanvenkatesha/Lexical-Analyzer-for-Cminus-Programming-Language).
+- **Syntactical Analysis**: Generates an Abstract Syntax Tree (AST) from valid Cminus code snippets.
+- **Language Support**: The parser supports:
+  - **Data Types**: `int`, `float`
+  - **Operators**: Arithmetic, logical, relational, assignment
+  - **Control Flow**: `if-else`, `while`, compound statements
+  - **Comments**: Single-line (`//`) and multi-line (`/* */`) comments
+  - **Identifiers**: Alphanumeric starting with a letter
+  - **Literals**: String literals (single quotes) and floating-point literals (decimal)
+  - **Keywords**: `int`, `float`, `if`, `else`, `exit`, `while`, `read`, `write`, `return`
+  
+---
+
+## Requirements
+
+To run this project, you need the following:
+
+- **Python**: Version 3.x or above
+- **PLY Library**: Python Lex-Yacc for lexical and syntactical analysis
+
+Install the required dependencies by running:
+
+```bash
+pip install ply
+```
+
+---
+
+## Setup and Usage
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/rohanvenkatesha/Parser-for-Cminus-Programming-Language
+   cd Parser-for-Cminus-Programming-Language
+   ```
+
+2. **Run the Lexer**:
+   The **Lexical Analyzer** is provided in the [Lexical-Analyzer-for-Cminus](https://github.com/rohanvenkatesha/Lexical-Analyzer-for-Cminus-Programming-Language) repository. Clone that repository and run the lexer to tokenize Cminus code:
+   ```bash
+   git clone https://github.com/rohanvenkatesha/Lexical-Analyzer-for-Cminus-Programming-Language
+   cd Lexical-Analyzer-for-Cminus-Programming-Language
+   python lexical_analyzer.py
+   ```
+
+   The lexer will generate tokens from the input Cminus code.
+
+3. **Run the Parser**:
+   Once the code is tokenized, use the parser to analyze the Cminus code and generate the Abstract Syntax Tree (AST).
+
+   ```bash
+   python parser.py
+   ```
+
+4. **Input Cminus Code**:
+   - The lexer and parser will analyze the input Cminus code provided and generate an Abstract Syntax Tree (AST) that reflects the structure of the code.
+
+---
+
+## Grammar Specifications
+
+For the **grammar rules** of the Cminus programming language, please refer to the **[Cminus programming language.pdf](Cminus programming language.pdf)** file in this repository. It contains detailed information about the syntax and constructs supported by the language, including:
+
+- **Data Types**: `int`, `float`
+- **Control Flow**:
+  - `if (condition) { statements }`
+  - `else { statements }`
+  - `while (condition) { statements }`
+  - Compound statements: `{ statement1; statement2; }`
+- **Operators**:
+  - Arithmetic: `+`, `-`, `*`, `/`, `%`
+  - Relational: `==`, `!=`, `>`, `<`, `>=`, `<=`
+  - Logical: `&&`, `||`
+  - Assignment: `=`
+- **Comments**:
+  - Single-line: `// comment`
+  - Multi-line: `/* comment */`
+- **Keywords** (Reserved Words):
+  - `int`, `float`, `if`, `else`, `exit`, `while`, `read`, `write`, `return`
+  
+---
+
+## Parser Rules
+
+The parser rules are implemented using **PLY**'s Yacc and the following syntax:
+
+- **`p_` function**: Defines a rule to match the corresponding non-terminal in the grammar.
+- **`p[0]`**: The result of the rule.
+- **`p.slice[n]`**: Accesses the token object where each token object contains attributes like `type`, `value`, `lineno`, and `lexpos`.
+- **`p_error`**: Handles syntax errors by printing an error message and skipping to the next valid token.
+- **`yacc` function**: Creates the parser object.
+
+---
+
+## Example Cminus Code
+
+Here is an example of Cminus code that can be parsed using the parser:
+
+```c
+int main() {
+    int a = 5;
+    float b = 3.14;
+    
+    if (a > b) {
+        write("Greater\n");
+    } else {
+        write("Lesser\n");
+    }
+    
+    return 0;
+}
+```
+
+---
+
+## File Structure
+
+```plaintext
+Parser-for-Cminus-Programming-Language/
+├── README.md                    # Project documentation
+├── parser.py                    # Lexer and parser code
+├── parsetab.py                  # Parse table generated by PLY
+├── source_code_1.cminus         # Example source code 1
+├── source_code_2.cminus         # Example source code 2
+├── source_code_3.cminus         # Example source code 3
+├── output_ast.txt               # Sample output (AST)
+├── Cminus programming language.pdf  # Grammar rules for Cminus
+```
+
+---
+
+## Future Improvements
+
+- **Error Recovery**: Implement better error recovery techniques to provide more detailed feedback to the user.
+- **Optimization**: Optimize the parsing process for larger code files.
+- **Extended Language Features**: Add support for additional data types, functions, and more complex control flow constructs.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
+Let me know if you need further adjustments!
