@@ -68,7 +68,7 @@ pip install ply
 
 ## Grammar Specifications
 
-For the **grammar rules** of the Cminus programming language, please refer to the **[Cminus programming language.pdf](Cminus programming language.pdf)** file in this repository. It contains detailed information about the syntax and constructs supported by the language, including:
+For the **grammar rules** of the Cminus programming language, please refer to the **[Cminus programming language.pdf](https://github.com/rohanvenkatesha/Parser-for-Cminus-Programming-Language/blob/main/Cminus%20programming%20language.pdf)** file in this repository. It contains detailed information about the syntax and constructs supported by the language, including:
 
 - **Data Types**: `int`, `float`
 - **Control Flow**:
